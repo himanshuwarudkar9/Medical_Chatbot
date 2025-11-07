@@ -1,0 +1,204 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 Medical Chatbot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .chat-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            border: 2px solid #ecf0f1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+        .message {
+            margin: 15px 0;
+            padding: 12px 18px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        .bot-message {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            margin-right: auto;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .message-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .message-input:focus {
+            border-color: #3498db;
+        }
+        .send-button {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .send-button:hover {
+            transform: translateY(-2px);
+        }
+        .loading {
+            color: #7f8c8d;
+            font-style: italic;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .welcome-message {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>🏥 Medical Assistant Chatbot</h1>
+            <p>AI-powered medical information based on medical literature</p>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                👋 Hello! I'm your AI medical assistant. I can help answer medical questions based on the medical literature in my knowledge base. 
+                <br><br>
+                <strong>Note:</strong> I provide information for educational purposes only. Always consult with a healthcare professional for medical advice.
+                <br><br>
+                What would you like to know about? 🩺
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" id="messageInput" class="message-input" 
+                   placeholder="Ask me about medical conditions, symptoms, treatments..." 
+                   onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()" class="send-button">Send 📤</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // Add user message to chat
+            addMessage(message, 'user-message');
+            
+            // Clear input
+            input.value = '';
+            
+            // Show loading message
+            addMessage('🤔 Analyzing your question and searching medical literature...', 'bot-message loading');
+            
+            // Send message to backend
+            const formData = new FormData();
+            formData.append('msg', message);
+            
+            fetch('/get', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Remove loading message
+                removeLastMessage();
+                // Add bot response
+                addMessage('🩺 ' + data, 'bot-message');
+            })
+            .catch(error => {
+                // Remove loading message
+                removeLastMessage();
+                addMessage('❌ Sorry, there was an error processing your request. Please try again.', 'bot-message');
+                console.error('Error:', error);
+            });
+        }
+        
+        function addMessage(message, className) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${className}`;
+            messageDiv.innerHTML = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function removeLastMessage() {
+            const chatMessages = document.getElementById('chatMessages');
+            const lastMessage = chatMessages.lastElementChild;
+            if (lastMessage && lastMessage.classList.contains('loading')) {
+                chatMessages.removeChild(lastMessage);
+            }
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        // Focus on input when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('messageInput').focus();
+        });
+    </script>
+</body>
+</html>
