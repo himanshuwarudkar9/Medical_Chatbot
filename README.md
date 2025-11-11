@@ -5,31 +5,32 @@ It uses **LangChain** for workflow orchestration, **Pinecone** for vector storag
 
 ---
 
-## 🚀 How to Run the Project (Locally)
+## How to Run the Project (Locally)
 
-### 🧩 Step 1: Clone the Repository
+### Step 1: Clone the Repository
 - https://github.com/himanshuwarudkar9/Medical_Chatbot.git
 - cd Medical-Chatbot
 
-### 🐍 Step 2: Create a Conda Environment
-# conda create -n medibot python=3.10 -y
-# conda activate medibot
+### Step 2: Create a Conda Environment
+- conda create -n medibot python=3.10 -y
+- conda activate medibot
 
-### 📦 Step 3: Install the Dependencies
-pip install -r requirements.txt
+### Step 3: Install the Dependencies
+- pip install -r requirements.txt
 
-### 🔐 Step 4: Configure Environment Variables
-Create a .env file in the root directory and add your API keys:
-PINECONE_API_KEY=your_pinecone_api_key
-OPENAI_API_KEY=your_openai_api_key
-⚠️ These credentials are required for connecting to Pinecone and accessing OpenAI’s GPT models.
+### Step 4: Configure Environment Variables
+- Create a .env file in the root directory and add your API keys:
+  - PINECONE_API_KEY=your_pinecone_api_key
+  - OPENAI_API_KEY=your_openai_api_key
+- These credentials are required for connecting to Pinecone and accessing OpenAI’s GPT models.
 
-### 🧠 Step 5: Generate and Store Embeddings
-Run the following command to create and upload embeddings to your Pinecone index:
-python store_index.py
+### Step 5: Generate and Store Embeddings
+- Run the following command to create and upload embeddings to your Pinecone index:
+  - python store_index.py
 
-### 💻 Step 6: Run the Flask Application
-python app.py
+### Step 6: Run the Flask Application
+- python app.py
+
 
 
 
