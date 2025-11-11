@@ -8,12 +8,12 @@ It uses **LangChain** for workflow orchestration, **Pinecone** for vector storag
 ## 🚀 How to Run the Project (Locally)
 
 ### 🧩 Step 1: Clone the Repository
-https://github.com/himanshuwarudkar9/Medical_Chatbot.git
-cd Medical-Chatbot
+# https://github.com/himanshuwarudkar9/Medical_Chatbot.git
+# cd Medical-Chatbot
 
 ### 🐍 Step 2: Create a Conda Environment
-conda create -n medibot python=3.10 -y
-conda activate medibot
+# conda create -n medibot python=3.10 -y
+# conda activate medibot
 
 ### 📦 Step 3: Install the Dependencies
 pip install -r requirements.txt
@@ -30,6 +30,7 @@ python store_index.py
 
 ### 💻 Step 6: Run the Flask Application
 python app.py
+
 
 
 
