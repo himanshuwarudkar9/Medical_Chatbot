@@ -21,7 +21,7 @@ It uses **LangChain** for workflow orchestration, **Pinecone** for vector storag
 ### Step 4: Configure Environment Variables
 - Create a .env file in the root directory and add your API keys:
   - PINECONE_API_KEY=your_pinecone_api_key
-  - OPENAI_API_KEY=your_openai_api_key
+  - GEMINI_API_KEY=your_gemini_api_key
 - These credentials are required for connecting to Pinecone and accessing OpenAI’s GPT models.
 
 ### Step 5: Generate and Store Embeddings
@@ -30,6 +30,7 @@ It uses **LangChain** for workflow orchestration, **Pinecone** for vector storag
 
 ### Step 6: Run the Flask Application
 - python app.py
+
 
 
 
