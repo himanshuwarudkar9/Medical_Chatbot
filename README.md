@@ -8,8 +8,6 @@ It uses **LangChain** for workflow orchestration, **Pinecone** for vector storag
 ## 🚀 How to Run the Project (Locally)
 
 ### 🧩 Step 1: Clone the Repository
-
-```bash
 git clone https://github.com/entbappy/Build-a-Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask-AWS.git
 cd Build-a-Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask-AWS
 
@@ -32,6 +30,7 @@ python store_index.py
 
 ### 💻 Step 6: Run the Flask Application
 python app.py
+
 
 
 
