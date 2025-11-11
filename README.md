@@ -1,4 +1,4 @@
-# 🩺 Medical Chatbot using LLMs, LangChain, Pinecone, and Flask
+# 🩺 Medical Chatbot using LLMs, RAG, LangChain, Pinecone, and Flask
 
 This project is a **locally hosted Medical Chatbot** powered by **Large Language Models (LLMs)**.  
 It uses **LangChain** for workflow orchestration, **Pinecone** for vector storage and retrieval, and **Flask** for creating a simple web interface.
@@ -32,5 +32,6 @@ python store_index.py
 
 ## 💻 Step 6: Run the Flask Application
 python app.py
+
 
 
