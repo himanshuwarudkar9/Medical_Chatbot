@@ -4,7 +4,7 @@ This project is a **locally hosted Medical Chatbot** powered by **Large Language
 It uses **LangChain** for workflow orchestration, **Pinecone** for vector storage and retrieval, and **Flask** for creating a simple web interface.
 
 ---
-<img width="2486" height="2254" alt="image" src="https://github.com/user-attachments/assets/4ed84596-ef91-49f6-b947-be6c57d29967" />
+<img width="1663" height="748" alt="downloadflow" src="https://github.com/user-attachments/assets/d7193d97-c412-43ae-8dc2-22fede322e95" />
 
 
 ## How to Run the Project (Locally)
@@ -32,6 +32,7 @@ It uses **LangChain** for workflow orchestration, **Pinecone** for vector storag
 
 ### Step 6: Run the Flask Application
 - python app.py
+
 
 
 
