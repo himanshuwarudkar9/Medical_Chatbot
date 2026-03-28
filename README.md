@@ -1,6 +1,4 @@
-# 🩺 Medical Chatbot using LLMs, RAG, LangChain, Pinecone, and Flask
-
-# Medical AI Hub — RAG-Powered Clinical Assistant
+# 🩺  Medical AI Hub — RAG-Powered Clinical Assistant
 
 > A multimodal medical chatbot that combines a Retrieval-Augmented Generation (RAG) pipeline over a medical reference book with Gemini Vision analysis, voice I/O, and a real-time Flask UI — bringing grounded, evidence-based answers to clinical questions.
 
